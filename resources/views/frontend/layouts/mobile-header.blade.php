@@ -1,25 +1,25 @@
     <div class="wrap_header_mobile">
         <!-- Logo moblie -->
         <a href="index.html" class="logo-mobile">
-            <img src="images/icons/logo.png" alt="IMG-LOGO">
+            <img src="{{ asset('assets/frontend/images/icons/logo.png') }}" alt="IMG-LOGO">
         </a>
         <!-- Button show menu -->
         <div class="btn-show-menu">
             <!-- Header Icon mobile -->
             <div class="header-icons-mobile">
                 <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                    <img src="{{ asset('assets/frontend/images/icons/icon-header-01.png') }}" class="header-icon1" alt="ICON">
                 </a>
                 <span class="linedivide2"></span>
                 <div class="header-wrapicon2">
-                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                    <img src="{{ asset('assets/frontend/images/icons/icon-header-02.png') }}" class="header-icon1 js-show-header-dropdown" alt="ICON">
                     <span class="header-icons-noti">0</span>
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         <ul class="header-cart-wrapitem">
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="images/item-cart-01.jpg" alt="IMG">
+                                    <img src="{{ asset('assets/frontend/images/item-cart-01.jpg') }}" alt="IMG">
                                 </div>
                                 <div class="header-cart-item-txt">
                                     <a href="#" class="header-cart-item-name">
@@ -32,7 +32,7 @@
                             </li>
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="images/item-cart-02.jpg" alt="IMG">
+                                    <img src="{{ asset('assets/frontend/images/item-cart-02.jpg') }}" alt="IMG">
                                 </div>
                                 <div class="header-cart-item-txt">
                                     <a href="#" class="header-cart-item-name">
@@ -45,7 +45,7 @@
                             </li>
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="images/item-cart-03.jpg" alt="IMG">
+                                    <img src="{{ asset('assets/frontend/images/item-cart-03.jpg') }}" alt="IMG">
                                 </div>
                                 <div class="header-cart-item-txt">
                                     <a href="#" class="header-cart-item-name">

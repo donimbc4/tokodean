@@ -48,7 +48,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="item-slick1 item2-slick1" style="background-image: url(images/master-slide-03.jpg);">
+				<div class="item-slick1 item2-slick1" style="background-image: url({{ asset('assets/frontend/images/master-slide-03.jpg') }});">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rollIn">
 							Women Collection 2018
@@ -66,7 +66,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="item-slick1 item3-slick1" style="background-image: url(images/master-slide-04.jpg);">
+				<div class="item-slick1 item3-slick1" style="background-image: url({{ asset('assets/frontend/images/master-slide-04.jpg') }});">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
 							Women Collection 2018
@@ -92,8 +92,7 @@
 				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-02.jpg" alt="IMG-BENNER">
-
+						<img src="{{ asset('assets/frontend/images/banner-02.jpg') }}" alt="IMG-BENNER">
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
 							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
@@ -101,11 +100,9 @@
 							</a>
 						</div>
 					</div>
-
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-05.jpg" alt="IMG-BENNER">
-
+						<img src="{{ asset('assets/frontend/images/banner-05.jpg') }}" alt="IMG-BENNER">
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
 							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
@@ -114,12 +111,10 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-03.jpg" alt="IMG-BENNER">
-
+						<img src="{{ asset('assets/frontend/images/banner-03.jpg') }}" alt="IMG-BENNER">
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
 							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
@@ -127,11 +122,9 @@
 							</a>
 						</div>
 					</div>
-
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-07.jpg" alt="IMG-BENNER">
-
+						<img src="{{ asset('assets/frontend/images/banner-07.jpg') }}" alt="IMG-BENNER">
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
 							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
@@ -144,8 +137,7 @@
 				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 					<!-- block1 -->
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-04.jpg" alt="IMG-BENNER">
-
+						<img src="{{ asset('assets/frontend/images/banner-04.jpg') }}" alt="IMG-BENNER">
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
 							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
@@ -153,20 +145,16 @@
 							</a>
 						</div>
 					</div>
-
 					<!-- block2 -->
 					<div class="block2 wrap-pic-w pos-relative m-b-30">
-						<img src="images/icons/bg-01.jpg" alt="IMG">
-
+						<img src="{{ asset('assets/frontend/images/icons/bg-01.jpg') }}" alt="IMG">
 						<div class="block2-content sizefull ab-t-l flex-col-c-m">
 							<h4 class="m-text4 t-center w-size3 p-b-8">
 								Sign up & get 20% off
 							</h4>
-
 							<p class="t-center w-size4">
 								Be the frist to know about the latest fashion news and get exclu-sive offers
 							</p>
-
 							<div class="w-size2 p-t-25">
 								<!-- Button -->
 								<a href="#" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
@@ -573,31 +561,26 @@
 						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
 							<img src="images/blog-01.jpg" alt="IMG-BLOG">
 						</a>
-
 						<div class="block3-txt p-t-14">
 							<h4 class="p-b-7">
 								<a href="blog-detail.html" class="m-text11">
 									Black Friday Guide: Best Sales & Discount Codes
 								</a>
 							</h4>
-
 							<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>
 							<span class="s-text6">on</span> <span class="s-text7">July 22, 2017</span>
-
 							<p class="s-text8 p-t-16">
 								Duis ut velit gravida nibh bibendum commodo. Sus-pendisse pellentesque mattis augue id euismod. Inter-dum et malesuada fames
 							</p>
 						</div>
 					</div>
 				</div>
-
 				<div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
 					<!-- Block3 -->
 					<div class="block3">
 						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
 							<img src="images/blog-02.jpg" alt="IMG-BLOG">
 						</a>
-
 						<div class="block3-txt p-t-14">
 							<h4 class="p-b-7">
 								<a href="blog-detail.html" class="m-text11">
