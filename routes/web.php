@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'Frontend\HomeController@index');
+Route::match(['get', 'post'], '/login', 'Auth\AuthController@login');
+Route::match(['get', 'post'], '/register', 'Auth\AuthController@register');
 
 // Route::get('/', 'Auth\AuthController@login')->name('login');
-// Route::get('login', 'Auth\AuthController@login')->name('login');
