@@ -12,7 +12,25 @@
 */
 
 Route::get('/', 'Frontend\HomeController@index');
-Route::match(['get', 'post'], '/login', 'Auth\AuthController@login');
+Route::match(['get', 'post'], '/login', 'Auth\AuthController@login')->name('login');
 Route::match(['get', 'post'], '/register', 'Auth\AuthController@register');
 
-// Route::get('/', 'Auth\AuthController@login')->name('login');
+Route::group(['middleware' => 'auth'], function () {
+    Route::prefix('/panel')->group(function()
+    {
+        Route::get('/dashboard', 'Backend\DashboardController@index');
+        Route::prefix('/master-data')->group(function()
+        {
+            Route::prefix('/users')->group(function()
+            {
+                Route::get('/', 'Backend\UsersController@index');
+            });
+            Route::prefix('/category-products')->group(function()
+            {
+                Route::get('/', 'Backend\CategoryProductsController@index');
+                Route::get('/create', 'Backend\CategoryProductsController@create');
+            });
+        });   
+        Route::post('logout', 'Auth\AuthController@logout')->name('logout');
+    });
+});

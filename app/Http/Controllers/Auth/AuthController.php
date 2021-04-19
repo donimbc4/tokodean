@@ -53,7 +53,7 @@ class AuthController extends Controller
                 Auth::attempt($data);
                 if (Auth::check())
                 {
-                    return redirect()->route('home');
+                    return redirect('panel/dashboard');
                 }
                 else
                 {
