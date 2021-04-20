@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    const ACTIVE = 1;
+    const INACTIVE = 0;
     use Notifiable;
 
     /**

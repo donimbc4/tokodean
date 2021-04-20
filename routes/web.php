@@ -24,11 +24,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::prefix('/users')->group(function()
             {
                 Route::get('/', 'Backend\UsersController@index');
+                Route::match(['get', 'post'], '/create', 'Backend\UsersController@create');
+                Route::match(['get', 'post'], '/update/{id}', 'Backend\UsersController@update');
             });
             Route::prefix('/category-products')->group(function()
             {
                 Route::get('/', 'Backend\CategoryProductsController@index');
-                Route::get('/create', 'Backend\CategoryProductsController@create');
+                Route::match(['get', 'post'], '/create', 'Backend\CategoryProductsController@create');
+                Route::match(['get', 'post'], '/update/{id}', 'Backend\CategoryProductsController@update');
             });
         });   
         Route::post('logout', 'Auth\AuthController@logout')->name('logout');
