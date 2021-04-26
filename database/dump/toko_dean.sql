@@ -1,45 +1,46 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhostMYSQL
+ Source Server         : localhost_3308
  Source Server Type    : MySQL
  Source Server Version : 100134
- Source Host           : localhost:3306
+ Source Host           : localhost:3308
  Source Schema         : toko_dean
 
  Target Server Type    : MySQL
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 18/04/2021 20:05:53
+ Date: 26/04/2021 13:11:21
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for m_category
+-- Table structure for m_category_products
 -- ----------------------------
-DROP TABLE IF EXISTS `m_category`;
-CREATE TABLE `m_category`  (
+DROP TABLE IF EXISTS `m_category_products`;
+CREATE TABLE `m_category_products`  (
   `id` int(11) NOT NULL,
   `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `flag_active` tinyint(1) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` datetime(0) NOT NULL,
-  `updated _by` int(11) NULL DEFAULT NULL,
-  `update_at` datetime(0) NULL DEFAULT NULL
+  `updated_by` int(11) NULL DEFAULT NULL,
+  `updated_at` datetime(0) NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of m_category
+-- Records of m_category_products
 -- ----------------------------
-INSERT INTO `m_category` VALUES (1, 'TSHIRT', 1, 1, '2021-04-18 18:30:56', NULL, NULL);
-INSERT INTO `m_category` VALUES (2, 'PANTS', 1, 1, '2021-04-18 18:33:05', NULL, NULL);
-INSERT INTO `m_category` VALUES (3, 'SHOES', 1, 0, '0000-00-00 00:00:00', NULL, NULL);
-INSERT INTO `m_category` VALUES (4, 'JACKET', 1, 1, '2021-04-18 18:33:58', NULL, NULL);
-INSERT INTO `m_category` VALUES (5, 'HAT', 1, 1, '2021-04-18 18:34:00', NULL, NULL);
-INSERT INTO `m_category` VALUES (6, 'KIDS', 1, 1, '2021-04-18 18:39:27', NULL, NULL);
+INSERT INTO `m_category_products` VALUES (1, 'TSHIRT', 'storage/categoryProduct/Y9e1OPTO2yEXgHH8bE71.jpeg', 1, 1, '2021-04-18 18:30:56', 1, '2021-04-26 13:10:22');
+INSERT INTO `m_category_products` VALUES (2, 'PANTS', '', 1, 1, '2021-04-18 18:33:05', NULL, NULL);
+INSERT INTO `m_category_products` VALUES (3, 'SHOES', 'storage/categoryProduct/JhnfcRD9n4q9TJIlcKRz.jpeg', 1, 0, '0000-00-00 00:00:00', 1, '2021-04-26 13:10:33');
+INSERT INTO `m_category_products` VALUES (4, 'JACKET', '', 1, 1, '2021-04-18 18:33:58', NULL, NULL);
+INSERT INTO `m_category_products` VALUES (5, 'HAT', '', 1, 1, '2021-04-18 18:34:00', NULL, NULL);
+INSERT INTO `m_category_products` VALUES (6, 'KIDS', 'storage/categoryProduct/jJCfEXaVSEjWBsIi986t.jpeg', 1, 1, '2021-04-18 18:39:27', 1, '2021-04-26 13:10:47');
 
 -- ----------------------------
 -- Table structure for m_product

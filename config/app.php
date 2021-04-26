@@ -229,6 +229,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'BackendHelper' => App\Helpers\BackendHelper::class,
     ],
 
 ];

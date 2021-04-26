@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 
 use DB;
 
+use App\Models\CategoryProducts\MCategoryProducts;
+
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $category = DB::table('m_category')
-            ->select('name')
+        $category = MCategoryProducts::select('name', 'image')
             ->where('flag_active', 1)
         ->get();
         
