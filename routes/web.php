@@ -33,6 +33,12 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::match(['get', 'post'], '/create', 'Backend\CategoryProductsController@create');
                 Route::match(['get', 'post'], '/update/{id}', 'Backend\CategoryProductsController@update');
             });
+            Route::prefix('/products')->group(function()
+            {
+                Route::get('/', 'Backend\ProductsController@index');
+                Route::match(['get', 'post'], '/create', 'Backend\ProductsController@create');
+                Route::match(['get', 'post'], '/update/{id}', 'Backend\ProductsController@update');
+            });
         });   
         Route::post('logout', 'Auth\AuthController@logout')->name('logout');
     });

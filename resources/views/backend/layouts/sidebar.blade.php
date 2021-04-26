@@ -25,6 +25,11 @@
                     <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Category Products</span>
                 </a>
             </li>
+            <li class="sidebar-item {{ strpos(Request::url(), '/panel/master-data/products') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ url('/panel/master-data/products') }}">
+                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Products</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -2,13 +2,13 @@
 @section('content')
     <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
-            <h3>Category Products</h3>
+            <h3>Products</h3>
         </div>
         <div class="col-auto ml-auto text-right mt-n1">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Master Data</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Category Products</li>
+                    <li class="breadcrumb-item active" aria-current="page">Products</li>
                 </ol>
             </nav>
         </div>
@@ -47,29 +47,37 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Category Products List</h5>
+                    <h5 class="card-title mb-0">Products List</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3" style="padding-top: 0px">
-                        <a href="{{ url('/panel/master-data/category-products/create') }}" class="btn btn-primary">Create Category Products</a>
+                        <a href="{{ url('/panel/master-data/products/create') }}" class="btn btn-primary">Create Products</a>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Size</th>
+                                <th>Color</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($categoryProductList as $keyCategory => $valCategory)
+                            @forelse ($productList as $keyProduct => $valProduct)
                             <tr>
-                                <td>{{ $keyCategory + 1 }}</td>
-                                <td>{{ $valCategory->name }}</td>
-                                <td>{!! $valCategory->flag_active == 1 ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>' !!}</td>
+                                <td>{{ $keyProduct + 1 }}</td>
+                                <td>{{ $valProduct->name }}</td>
+                                <td>{{ isset($valProduct->categoryProduct->name) ? $valProduct->categoryProduct->name : '-' }}</td>
+                                <td>{{ number_format($valProduct->price, 0, ',', '.') }}</td>
+                                <td>{{ $valProduct->size }}</td>
+                                <td>{{ $valProduct->color }}</td>
+                                <td>{!! $valProduct->flag_active == 1 ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>' !!}</td>
                                 <td class="table-action">
-                                    <a href="{{ url('/panel/master-data/category-products/update/'.\Crypt::encryptString($valCategory->id).'') }}"><i class="align-middle" data-feather="edit-2"></i></a>
+                                    <a href="{{ url('/panel/master-data/products/update/'.\Crypt::encryptString($valProduct->id).'') }}"><i class="align-middle" data-feather="edit-2"></i></a>
                                 </td>
                             </tr>
                             @empty
@@ -79,7 +87,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    {{ $categoryProductList->links() }}
+                    {{ $productList->links() }}
                 </div>
             </div>
         </div>

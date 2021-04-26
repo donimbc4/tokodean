@@ -84,7 +84,6 @@ class CategoryProductsController extends Controller
         }
         catch (Exception $e)
         {
-            dd($e->getMessage());
             DB::rollBack();
             return redirect('panel/master-data/category-products')->with('danger', 'Gagal mengubah Category Products.');
         }
