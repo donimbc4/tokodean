@@ -35,16 +35,21 @@ class BackendHelper
         }
     }
 
-    public static function validationImageBase64($photo, $subPath)
+    public static function validationImageBase64($photo, $subPath, $length, $height)
     {
-        $subPath = 'categoryProduct';
         $uniqueChar     = Str::random(20);
         $image          = substr($photo, strpos($photo, ',') + 1);
-        $image          = Image::make(base64_decode($image))->resize(720, 660)->stream(self::validasiExtensionImage($photo), 100);
+        $image          = Image::make(base64_decode($image))->resize($length, $height)->stream(self::validasiExtensionImage($photo), 100);
         $fileName       = $uniqueChar.'.'.self::validasiExtensionImage($photo);
         $pathFile       = 'public/'.$subPath;
         Storage::put($pathFile.'/'.$fileName, $image);
 
         return $pathFile.'/'.$fileName;
+    }
+
+    public static function deleteFile($path)
+    {
+        dd($path);
+        unlink(storage_path('app\public\banner\6lCuN19vzJUn2lfz3AvB.jpeg'));
     }
 }

@@ -2,14 +2,14 @@
 @section('content')
     <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
-            <h3>Update Category Products</h3>
+            <h3>Update Banner</h3>
         </div>
         <div class="col-auto ml-auto text-right mt-n1">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Master Data</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/panel/master-data/category-products') }}">Category Products</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Update Category Products</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/panel/master-data/banner') }}">Banner</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Update Banner</li>
                 </ol>
             </nav>
         </div>
@@ -20,13 +20,13 @@
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" autocomplete="off" required value="{{ $mCategoryProducts->name }}" />
+                    <input type="text" class="form-control" name="name" autocomplete="off" required value="{{ $banner->name }}" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Status</label>
                     <select class="form-control" name="status" id="status">
-                        <option value="1" {{ $mCategoryProducts->flag_active == 1 ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ $mCategoryProducts->flag_active == 0 ? 'selected' : '' }}>Inactive</option>
+                        <option value="1" {{ $banner->flag_active == 1 ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ $banner->flag_active == 0 ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -35,7 +35,9 @@
                     <input type="hidden" id="image" name="image">
                 </div>
                 <div class="mb-3">
-                    <div id="divImage"></div>
+                    <div id="divImage">
+                        <img src="{{ url('/'.$banner->image.'') }}" class="img-fluid" style="height: 250px;" alt="category products" />
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>

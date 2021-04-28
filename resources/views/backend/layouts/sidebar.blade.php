@@ -20,6 +20,11 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
                 </a>
             </li>
+            <li class="sidebar-item {{ strpos(Request::url(), '/panel/master-data/banner') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ url('/panel/master-data/banner') }}">
+                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Banner</span>
+                </a>
+            </li>
             <li class="sidebar-item {{ strpos(Request::url(), '/panel/master-data/category-products') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ url('/panel/master-data/category-products') }}">
                     <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Category Products</span>

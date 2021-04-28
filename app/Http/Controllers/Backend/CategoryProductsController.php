@@ -61,7 +61,7 @@ class CategoryProductsController extends Controller
             {
                 if ($request->image !== null)
                 {
-                    $pathImage = str_replace('public', 'storage', BackendHelper::validationImageBase64($request->image, 'categoryProduct'));
+                    $pathImage = str_replace('public', 'storage', BackendHelper::validationImageBase64($request->image, 'categoryProduct', 720, 660));
                 }
                 DB::beginTransaction();
                 $mCategoryProducts               = MCategoryProducts::find(\Crypt::decryptString($id));

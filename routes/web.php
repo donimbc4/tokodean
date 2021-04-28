@@ -27,6 +27,12 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::match(['get', 'post'], '/create', 'Backend\UsersController@create');
                 Route::match(['get', 'post'], '/update/{id}', 'Backend\UsersController@update');
             });
+            Route::prefix('/banner')->group(function()
+            {
+                Route::get('/', 'Backend\BannerController@index');
+                Route::match(['get', 'post'], '/create', 'Backend\BannerController@create');
+                Route::match(['get', 'post'], '/update/{id}', 'Backend\BannerController@update');
+            });
             Route::prefix('/category-products')->group(function()
             {
                 Route::get('/', 'Backend\CategoryProductsController@index');

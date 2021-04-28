@@ -24,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/main.css') }}">
 </head>
 <body class="animsition">
-	<header class="header1">
+	<header class="header1" style="height: 0px !important">
 		@include('frontend.layouts.desktop-header')
 		@include('frontend.layouts.mobile-header')
         @include('frontend.layouts.mobile-side-menu')
