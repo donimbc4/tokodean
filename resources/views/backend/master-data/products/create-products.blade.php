@@ -47,14 +47,14 @@
                     <label class="form-label">Color</label>
                     <input type="text" class="form-control" name="color" placeholder="Color" autocomplete="off" required />
                 </div>
-                {{-- <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="file" class="form-control" onchange="renderFile(this)" />
-                    <input type="hidden" id="image" name="image">
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">Thumbnail</label>
+                    <input type="file" class="form-control" onchange="renderFile(this)" required />
+                    <input type="hidden" id="thumbnail" name="thumbnail">
                 </div>
                 <div class="mb-3">
                     <div id="divImage"></div>
-                </div> --}}
+                </div>
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>
         </div>
@@ -69,8 +69,8 @@
         renderImage = (file) => {
             var reader = new FileReader()
             reader.onload = (event) => {
-                document.getElementById('divImage').innerHTML = `<img src="${event.target.result}" class="img-fluid" style="height: 250px;" alt="category products" />`
-                document.getElementById('image').value = event.target.result
+                document.getElementById('divImage').innerHTML = `<img src="${event.target.result}" class="img-fluid" style="height: 250px;" alt="thumbnail products" />`
+                document.getElementById('thumbnail').value = event.target.result
             }
             reader.readAsDataURL(file)
         }

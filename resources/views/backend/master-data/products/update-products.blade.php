@@ -2,7 +2,7 @@
 @section('content')
     <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
-            <h3>Update Category Products {{ $product->name }}</h3>
+            <h3>Update Products {{ $product->name }}</h3>
         </div>
         <div class="col-auto ml-auto text-right mt-n1">
             <nav aria-label="breadcrumb">
@@ -54,14 +54,16 @@
                         <option value="0" {{ $product->flag_active == 0 ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
-                {{-- <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">Thumbnail</label>
                     <input type="file" class="form-control" onchange="renderFile(this)" />
-                    <input type="hidden" id="image" name="image">
+                    <input type="hidden" id="thumbnail" name="thumbnail">
                 </div>
                 <div class="mb-3">
-                    <div id="divImage"></div> --}}
-                {{-- </div> --}}
+                    <div id="divImage">
+                        <img class="img-fluid" style="height: 250px;" src="{{ asset($product->thumbnail) }}" alt="thumbnail product" />
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>
         </div>
@@ -76,8 +78,8 @@
         renderImage = (file) => {
 	        var reader = new FileReader()
 	        reader.onload = (event) => {
-                document.getElementById('divImage').innerHTML = `<img src="${event.target.result}" class="img-fluid" style="height: 250px;" alt="category products" />`
-                document.getElementById('image').value = event.target.result
+                document.getElementById('divImage').innerHTML = `<img src="${event.target.result}" class="img-fluid" style="height: 250px;" alt="thumbnail products" />`
+                document.getElementById('thumbnail').value = event.target.result
 	        }
 	        reader.readAsDataURL(file)
 	    }

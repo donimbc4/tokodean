@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use DB;
 
+use App\Models\Products\MProducts;
 use App\Models\MasterData\Banner\MBanner;
 use App\Models\CategoryProducts\MCategoryProducts;
 
@@ -14,6 +15,12 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        $product = MProducts::select('name', 'price', 'thumbnail')
+            ->where('flag_active', MProducts::ACTIVE)
+            ->orderBy('created_at', 'DESC')
+            ->limit(8)
+        ->get();
+
         $banner = MBanner::select('name', 'image')
             ->where('flag_active', MBanner::ACTIVE)
         ->get();
@@ -23,6 +30,7 @@ class HomeController extends Controller
         ->get();
         
         return view('frontend.home.index', [
+            'product'   => $product,
             'banner'    => $banner,
             'category'  => $category
         ]);
