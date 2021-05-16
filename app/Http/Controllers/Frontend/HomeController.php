@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $product = MProducts::select('name', 'price', 'thumbnail')
+        $product = MProducts::select('name', 'slug', 'price', 'thumbnail')
             ->where('flag_active', MProducts::ACTIVE)
             ->orderBy('created_at', 'DESC')
             ->limit(8)
@@ -25,7 +25,7 @@ class HomeController extends Controller
             ->where('flag_active', MBanner::ACTIVE)
         ->get();
 
-        $category = MCategoryProducts::select('name', 'image')
+        $category = MCategoryProducts::select('name', 'slug', 'image')
             ->where('flag_active', MCategoryProducts::ACTIVE)
         ->get();
         

@@ -35,6 +35,7 @@ class CategoryProductsController extends Controller
                 DB::beginTransaction();
                 $mCategoryProducts               = new MCategoryProducts;
                 $mCategoryProducts->name         = $request->name;
+                $mCategoryProducts->slug         = Str::slug($request->name);
                 $mCategoryProducts->flag_active  = MCategoryProducts::ACTIVE; #DEFAULT ACTIVE
                 $mCategoryProducts->created_by   = Auth::user()->id;
                 $mCategoryProducts->created_at   = date('Y-m-d H:i:s');
@@ -66,6 +67,7 @@ class CategoryProductsController extends Controller
                 DB::beginTransaction();
                 $mCategoryProducts               = MCategoryProducts::find(\Crypt::decryptString($id));
                 $mCategoryProducts->name         = $request->name;
+                $mCategoryProducts->slug         = Str::slug($request->name);
                 $mCategoryProducts->image        = isset($pathImage) ? $pathImage : '-';
                 $mCategoryProducts->flag_active  = $request->status;
                 $mCategoryProducts->updated_by   = Auth::user()->id;

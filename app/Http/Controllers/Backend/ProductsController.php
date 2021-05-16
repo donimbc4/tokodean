@@ -40,6 +40,7 @@ class ProductsController extends Controller
                 DB::beginTransaction();
                 $product                        = new MProducts;
                 $product->name                  = $request->name;
+                $product->slug                  = Str::slug($request->name);
                 $product->category_product_id   = $request->category;
                 $product->description           = $request->description;
                 $product->price                 = $request->price;
@@ -64,7 +65,6 @@ class ProductsController extends Controller
         catch (Exception $e)
         {
             DB::rollBack();
-            dd($e->getMessage());
             return redirect('panel/master-data/products')->with('danger','Gagal membuat Product.');
         }
     }
@@ -82,6 +82,7 @@ class ProductsController extends Controller
                 DB::beginTransaction();
                 $product                        = MProducts::find(\Crypt::decryptString($id));
                 $product->name                  = $request->name;
+                $product->slug                  = Str::slug($request->name);
                 $product->category_product_id   = $request->category;
                 $product->description           = $request->description;
                 $product->price                 = $request->price;
@@ -136,7 +137,6 @@ class ProductsController extends Controller
         catch (Exception $e)
         {
             DB::rollBack();
-            dd($e->getMessage());
             return redirect('panel/master-data/products')->with('danger', 'Gagal mengubah Product.');
         }
     }

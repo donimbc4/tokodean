@@ -35,7 +35,7 @@
                     <div class="block1 hov-img-zoom pos-relative m-b-30">
                         <img src="{{ url($valCategory->image) }}" alt="IMG-BENNER">
                         <div class="block1-wrapbtn w-size2">
-                            <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                            <a href="{{ url('/'.$valCategory->slug.'') }}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
                                 {{ $valCategory->name }}
                             </a>
                         </div>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="block2-txt p-t-20">
-                                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                                <a href="{{ url('/product/'.$valProduct->slug.'') }}" class="block2-name dis-block s-text3 p-b-5">
                                     {{ $valProduct->name }}
                                 </a>
                                 <span class="block2-price m-text6 p-r-5">
@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="block2-txt p-t-20">
-                                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                                <a href="{{ url('/product/'.$valProduct->slug.'') }}" class="block2-name dis-block s-text3 p-b-5">
                                     {{ $valProduct->name }}
                                 </a>
                                 <span class="block2-price m-text6 p-r-5">
