@@ -16,7 +16,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Name</label>
@@ -63,6 +63,43 @@
                     <div id="divImage">
                         <img class="img-fluid" style="height: 250px;" src="{{ asset($product->thumbnail) }}" alt="thumbnail product" />
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label for="form-label">Product Photo</label>
+                    <input type="file" class="form-control" name="productPhoto[]" multiple />
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Photo</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($productPhoto as $keyPhoto => $valPhoto)
+                            <tr>
+                                <td>{{ $keyPhoto + 1 }}</td>
+                                <td>
+                                    <img class="img-fluid" src="{{ asset($valPhoto->photo) }}" width="250" height="250" alt="photo product" />
+                                </td>
+                                <td>{{ $valPhoto->flag_active == 1 ? 'Active' : 'Inactive' }}</td>
+                                <td>
+                                    <a href="{{ url('/panel/master-data/products/deletePhoto') }}" onclick="event.preventDefault(); document.getElementById('deletePhoto').submit();" class="btn btn-danger btn-sm">Delete
+                                        <form id="deletePhoto" action="{{ url('/panel/master-data/products/deletePhoto') }}" method="POST" style="display: none;">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $valPhoto->id }}" />
+                                        </form>
+                                    </a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center">Data Empty</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>

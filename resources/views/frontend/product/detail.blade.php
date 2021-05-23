@@ -7,21 +7,13 @@
 				<div class="wrap-slick3 flex-sb flex-w">
 					<div class="wrap-slick3-dots"></div>
 					<div class="slick3">
-						<div class="item-slick3" data-thumb="{{ asset($product->thumbnail) }}">
+						@foreach ($productPhoto as $keyPhoto => $valPhoto)
+						<div class="item-slick3" data-thumb="{{ asset($valPhoto->photo) }}">
 							<div class="wrap-pic-w">
-								<img src="{{ asset($product->thumbnail) }}" alt="IMG-PRODUCT">
+								<img src="{{ asset($valPhoto->photo) }}" alt="IMG-PRODUCT">
 							</div>
 						</div>
-						<div class="item-slick3" data-thumb="{{ asset($product->thumbnail) }}">
-							<div class="wrap-pic-w">
-								<img src="{{ asset($product->thumbnail) }}" alt="IMG-PRODUCT">
-							</div>
-						</div>
-						<div class="item-slick3" data-thumb="{{ asset($product->thumbnail) }}">
-							<div class="wrap-pic-w">
-								<img src="{{ asset($product->thumbnail) }}" alt="IMG-PRODUCT">
-							</div>
-						</div>
+						@endforeach
 					</div>
 				</div>
 			</div>

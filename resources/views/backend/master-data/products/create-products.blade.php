@@ -16,7 +16,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Name</label>
@@ -54,6 +54,10 @@
                 </div>
                 <div class="mb-3">
                     <div id="divImage"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="form-label">Product Photo</label>
+                    <input type="file" class="form-control" name="productPhoto[]" multiple />
                 </div>
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>

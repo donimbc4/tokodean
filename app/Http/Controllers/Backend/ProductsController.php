@@ -15,6 +15,7 @@ use BackendHelper;
 
 use App\User;
 use App\Models\Products\MProducts;
+use App\Models\Products\MProductsPhoto;
 use App\Models\CategoryProducts\MCategoryProducts;
 
 class ProductsController extends Controller
@@ -51,6 +52,27 @@ class ProductsController extends Controller
                 $product->created_by            = Auth::user()->id;
                 $product->created_at            = date('Y-m-d H:i:s');
                 $product->save();
+
+                if ($request->productPhoto != null)
+                {
+                    foreach ($request->productPhoto as $keyPhotos => $valPhotos)
+                    {
+                        $file_path_food = null;
+                        $imgName   = Str::random(20);
+                        $extension = $valPhotos->extension();
+                        $fileName  = $imgName .'.'.$extension;
+                        $pathFile  = 'public/products/'.$product->id;
+                        $pathFileFull = Storage::put($pathFile, $valPhotos);
+                        
+                        $productPhoto               = new MProductsPhoto;
+                        $productPhoto->product_id   = $product->id;
+                        $productPhoto->photo        = str_replace('public', 'storage', $pathFileFull);
+                        $productPhoto->flag_active  = MProductsPhoto::ACTIVE;
+                        $productPhoto->created_by   = Auth::user()->id;
+                        $productPhoto->created_at   = date("Y-m-d H:i:s");
+                        $productPhoto->save();
+                    }
+                }
                 DB::commit();
                 
                 return redirect('panel/master-data/products')->with('success','Sukses membuat Product.');
@@ -97,29 +119,26 @@ class ProductsController extends Controller
                 $product->updated_at            = date('Y-m-d H:i:s');
                 $product->save();
 
-                // if ($request->foodphotos != null) {
-                //     foreach ($request->foodphotos as $keyPhotos => $valPhotos)
-                //     {
-                //         $file_path_food = null;
-                //         $imgname   = Str::random(15);
-                //         $extension = $valPhotos->extension();
-                //         $filename  = $imgname .'.'.$extension;
-                //         $path      = '/contents/foodphotos/'.Session::get('ss_iduser').'/'.date('Y').'/'.date('m').'/'.date('d');
-                //         $fullpath  = $path.'/'.$filename;
-                //         $dir_save  = public_path().$fullpath;
-                //         $dirname   = dirname($dir_save);
-                //         if (!file_exists($dirname)) (mkdir($dirname, 0755, true));
-                //         $valPhotos->move(public_path().$path,$filename);
-                //         $file_path_food = $fullpath;
-
-                //         $foodPhotos             = new MFoodPhotos;
-                //         $foodPhotos->tenants_id = $product->id;
-                //         $foodPhotos->food_photo = $file_path_food;
-                //         $foodPhotos->created_by = Session::get('ss_iduser');
-                //         $foodPhotos->created_at = date("Y-m-d H:i:s");
-                //         $foodPhotos->save();
-                //     }
-                // }
+                if ($request->productPhoto != null)
+                {
+                    foreach ($request->productPhoto as $keyPhotos => $valPhotos)
+                    {
+                        $file_path_food = null;
+                        $imgName   = Str::random(20);
+                        $extension = $valPhotos->extension();
+                        $fileName  = $imgName .'.'.$extension;
+                        $pathFile  = 'public/products/'.$product->id;
+                        $pathFileFull = Storage::put($pathFile, $valPhotos);
+                        
+                        $productPhoto               = new MProductsPhoto;
+                        $productPhoto->product_id   = $product->id;
+                        $productPhoto->photo        = str_replace('public', 'storage', $pathFileFull);
+                        $productPhoto->flag_active  = MProductsPhoto::ACTIVE;
+                        $productPhoto->created_by   = Auth::user()->id;
+                        $productPhoto->created_at   = date("Y-m-d H:i:s");
+                        $productPhoto->save();
+                    }
+                }
 
                 DB::commit();
                 
@@ -127,10 +146,12 @@ class ProductsController extends Controller
             }
             
             $product = MProducts::where('id', \Crypt::decryptString($id))->first();
+            $productPhoto = MProductsPhoto::where('product_id', \Crypt::decryptString($id))->get();
             $mCategoryProducts = MCategoryProducts::where('flag_active', MCategoryProducts::ACTIVE)->get();
             
             return view('backend.master-data.products.update-products', [
                 'product'           => $product,
+                'productPhoto'      => $productPhoto,
                 'mCategoryProducts' => $mCategoryProducts
             ]);
         }
@@ -138,6 +159,27 @@ class ProductsController extends Controller
         {
             DB::rollBack();
             return redirect('panel/master-data/products')->with('danger', 'Gagal mengubah Product.');
+        }
+    }
+
+    public function deletePhoto(Request $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $productPhoto = MProductsPhoto::find($request->id);
+            $productPhoto->delete();
+            DB::commit();
+            if(\File::exists(public_path($productPhoto->photo))) {
+                \File::delete(public_path($productPhoto->photo));
+            }
+
+            return redirect()->back()->with('success', 'Delete Successfully');
+        }
+        catch (Exception $e)
+        {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }

@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/', 'Backend\ProductsController@index');
                 Route::match(['get', 'post'], '/create', 'Backend\ProductsController@create');
                 Route::match(['get', 'post'], '/update/{id}', 'Backend\ProductsController@update');
+                Route::post('/deletePhoto', 'Backend\ProductsController@deletePhoto');
             });
         });   
         Route::post('logout', 'Auth\AuthController@logout')->name('logout');
