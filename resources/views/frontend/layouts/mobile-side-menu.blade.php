@@ -38,7 +38,7 @@
                         <i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
                     </li>
                     <li class="item-menu-mobile">
-                        <a href="product.html">Shop</a>
+                        <a href="{{ url('/shop') }}">Shop</a>
                     </li>
                     <li class="item-menu-mobile">
                         <a href="product.html">Sale</a>
