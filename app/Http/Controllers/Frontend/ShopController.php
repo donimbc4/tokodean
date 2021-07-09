@@ -24,6 +24,9 @@ class ShopController extends Controller
         if ($request->category != null) {
             $product = $product->where('m_category_products.slug', $request->category);
         }
+        if ($request->search != null) {
+            $product = $product->where('m_product.name', 'like', '%'.$request->search.'%');
+        }
 
         $product = $product->paginate(12);
 
@@ -31,7 +34,8 @@ class ShopController extends Controller
 
         return view('frontend.shop.index', [
             'category'  => $category,
-            'product'   => $product
+            'product'   => $product,
+            'search'    => $request->search
         ]);
     }
 }

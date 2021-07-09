@@ -41,7 +41,7 @@
 						</h4>
 						<div class="search-product pos-relative bo4 of-hidden">
                             <form action="{{ url()->full() }}" method="GET">
-                                <input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search" placeholder="Search Products...">
+                                <input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search" placeholder="Search Products..." value="{{ $search }}" />
                                 <button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
                                     <i class="fs-12 fa fa-search" aria-hidden="true"></i>
                                 </button>
@@ -68,7 +68,6 @@
 									<option>$100.00 - $150.00</option>
 									<option>$150.00 - $200.00</option>
 									<option>$200.00+</option>
-
 								</select>
 							</div>
 						</div>
