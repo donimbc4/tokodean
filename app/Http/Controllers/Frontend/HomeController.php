@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $product = MProducts::select('name', 'slug', 'price', 'thumbnail')
+        $product = MProducts::select('id', 'name', 'slug', 'price', 'thumbnail')
             ->where('flag_active', MProducts::ACTIVE)
             ->orderBy('created_at', 'DESC')
             ->limit(8)

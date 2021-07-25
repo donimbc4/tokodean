@@ -60,6 +60,45 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
+
+		handleWishlist = (obj) => {
+			const arrayWo = localStorage.getItem('cartList') === null ? [] : JSON.parse(localStorage.getItem('cartList'))
+			if (arrayWo.length === 0) {
+				obj.qty = 1;
+				obj.totalPrice = obj.price
+				localStorage.setItem('cartList', JSON.stringify([...arrayWo, obj]))
+			}
+			else {
+				arrayWo.forEach((data, i) => {
+					if (data.id == obj.id) {
+						obj.qty = data.qty + 1;
+						obj.totalPrice = parseInt(obj.price) + parseInt(data.totalPrice);
+						arrayWo.splice(i, 1);
+						localStorage.setItem('cartList', JSON.stringify([...arrayWo, obj]))
+					}
+					else {
+						obj.qty = 1;
+						obj.totalPrice = obj.price;
+						localStorage.setItem('cartList', JSON.stringify([...arrayWo, obj]))
+					}
+				})
+			}
+
+			// if (obj.checked) {
+			// 	localStorage.setItem('cartList', JSON.stringify([...arrayWo, {wo: obj.value, index: obj.getAttribute('data-index')}]))
+			// }
+			// else if (!obj.checked) {
+			// 	var currentWo = JSON.parse(localStorage.getItem('cartList'))
+			// 	currentWo.forEach((data, i) => {
+			// 		if (data.wo == obj.value) {
+			// 			currentWo.splice(i, 1)
+			// 		}
+			// 	})
+			// 	localStorage.setItem('cartList', JSON.stringify(currentWo))
+			// }
+			// handleButtonProcces()
+			console.log(obj)
+		}
 	</script>
 	<script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 	@yield('javascript')

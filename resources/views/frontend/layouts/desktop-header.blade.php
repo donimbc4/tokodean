@@ -66,7 +66,7 @@
                     <div class="header-wrapicon2">
                         <img src="{{ asset('assets/frontend/images/icons/icon-header-02.png') }}" class="header-icon1 js-show-header-dropdown" alt="ICON">
                         <span class="header-icons-noti">0</span>
-                        <div class="header-cart header-dropdown">
+                        <div class="header-cart header-dropdown" >
                             <ul class="header-cart-wrapitem">
                                 <li class="header-cart-item">
                                     <div class="header-cart-item-img">
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="header-cart-item-txt">
                                         <a href="#" class="header-cart-item-name">
-                                            White Shirt With Pleat Detail Back
+                                            White Shirt With Pleat Detail Backs
                                         </a>
                                         <span class="header-cart-item-info">
                                             1 x $19.00
