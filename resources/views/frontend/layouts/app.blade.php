@@ -48,6 +48,61 @@
 	<script type="text/javascript" src="{{ asset('assets/frontend/vendor/lightbox2/js/lightbox.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/frontend/vendor/sweetalert/sweetalert.min.js') }}"></script>
 	<script type="text/javascript">
+		(() => {
+			setTimeout(() => {
+				getQtyChart();
+			}, 100);
+		})()
+
+		getQtyChart = () => {
+			const arrayWo = localStorage.getItem('cartList') === null ? [] : JSON.parse(localStorage.getItem('cartList'));
+			document.getElementById('cart-desktop').innerText = arrayWo.length;
+			document.getElementById('cart-mobile').innerHTML = arrayWo.length;
+
+			let chartHtml = "";
+			let totalPrice = 0;
+			arrayWo.forEach((data, i) => {
+				chartHtml += `
+				<ul class="header-cart-wrapitem">
+					<li class="header-cart-item">
+						<div class="header-cart-item-img">
+							<img src="${data.thumbnail}" alt="IMG">
+						</div>
+						<div class="header-cart-item-txt">
+							<a href="#" class="header-cart-item-name">
+								${data.name}
+							</a>
+							<span class="header-cart-item-info">
+								${data.qty} x ${data.price}
+							</span>
+						</div>
+					</li>
+				</ul>
+				`
+				totalPrice = parseInt(totalPrice) + parseInt(data.totalPrice);
+			});
+
+			chartHtml += `
+				<div class="header-cart-total">
+					Total: ${totalPrice}
+				</div>
+				<div class="header-cart-buttons">
+					<div class="header-cart-wrapbtn">
+						<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+							View Cart
+						</a>
+					</div>
+					<div class="header-cart-wrapbtn">
+						<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+							Check Out
+						</a>
+					</div>
+				</div>
+			`
+
+			$('.cart-list').html(`${chartHtml}`)
+		}
+
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
@@ -83,21 +138,7 @@
 					}
 				})
 			}
-
-			// if (obj.checked) {
-			// 	localStorage.setItem('cartList', JSON.stringify([...arrayWo, {wo: obj.value, index: obj.getAttribute('data-index')}]))
-			// }
-			// else if (!obj.checked) {
-			// 	var currentWo = JSON.parse(localStorage.getItem('cartList'))
-			// 	currentWo.forEach((data, i) => {
-			// 		if (data.wo == obj.value) {
-			// 			currentWo.splice(i, 1)
-			// 		}
-			// 	})
-			// 	localStorage.setItem('cartList', JSON.stringify(currentWo))
-			// }
-			// handleButtonProcces()
-			console.log(obj)
+			getQtyChart();
 		}
 	</script>
 	<script src="{{ asset('assets/frontend/js/main.js') }}"></script>

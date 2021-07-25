@@ -65,8 +65,8 @@
                     <span class="linedivide1"></span>
                     <div class="header-wrapicon2">
                         <img src="{{ asset('assets/frontend/images/icons/icon-header-02.png') }}" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                        <span class="header-icons-noti">0</span>
-                        <div class="header-cart header-dropdown" >
+                        <span class="header-icons-noti" id="cart-desktop"></span>
+                        <div class="header-cart header-dropdown cart-list">
                             <ul class="header-cart-wrapitem">
                                 <li class="header-cart-item">
                                     <div class="header-cart-item-img">
