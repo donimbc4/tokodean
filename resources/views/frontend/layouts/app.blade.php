@@ -51,7 +51,7 @@
 		(() => {
 			setTimeout(() => {
 				getQtyChart();
-			}, 100);
+			}, 10);
 		})()
 
 		getQtyChart = () => {
@@ -66,7 +66,7 @@
 				<ul class="header-cart-wrapitem">
 					<li class="header-cart-item">
 						<div class="header-cart-item-img">
-							<img src="${data.thumbnail}" alt="IMG">
+							<img src="{{ asset('${data.thumbnail}') }}" alt="IMG">
 						</div>
 						<div class="header-cart-item-txt">
 							<a href="#" class="header-cart-item-name">
@@ -82,23 +82,34 @@
 				totalPrice = parseInt(totalPrice) + parseInt(data.totalPrice);
 			});
 
-			chartHtml += `
-				<div class="header-cart-total">
-					Total: ${totalPrice}
-				</div>
-				<div class="header-cart-buttons">
-					<div class="header-cart-wrapbtn">
-						<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-							View Cart
-						</a>
+			if (arrayWo.length > 0) {
+				chartHtml += `
+					<div class="header-cart-total">
+						Total: ${totalPrice}
 					</div>
-					<div class="header-cart-wrapbtn">
-						<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-							Check Out
-						</a>
+					<div class="header-cart-buttons">
+						<div class="header-cart-wrapbtn">
+							<a href="{{ url('/cart') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+								View Cart
+							</a>
+						</div>
+						<div class="header-cart-wrapbtn">
+							<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+								Check Out
+							</a>
+						</div>
 					</div>
-				</div>
-			`
+				`
+			}
+			else {
+				chartHtml += `
+				<ul class="header-cart-wrapitem">
+					<li>
+						<p class="text-center cart-empty">Your shopping cart is empty!</p>
+					</li>
+				</ul>
+				`
+			}
 
 			$('.cart-list').html(`${chartHtml}`)
 		}

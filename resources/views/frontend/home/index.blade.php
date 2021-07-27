@@ -84,34 +84,6 @@
                         </div>
                     </div>
                     @endforeach
-                    @foreach ($product as $keyProduct => $valProduct)
-                    <div class="item-slick2 p-l-15 p-r-15">
-                        <div class="block2">
-                            <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-                                <img src="{{ asset($valProduct->thumbnail) }}" alt="IMG-PRODUCT">
-                                <div class="block2-overlay trans-0-4">
-                                    <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                        <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                        <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-                                    </a>
-                                    <div class="block2-btn-addcart w-size1 trans-0-4">
-                                        <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="handleWishlist({{json_encode($valProduct)}})">
-                                            Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="block2-txt p-t-20">
-                                <a href="{{ url('/product/'.$valProduct->slug.'') }}" class="block2-name dis-block s-text3 p-b-5">
-                                    {{ $valProduct->name }}
-                                </a>
-                                <span class="block2-price m-text6 p-r-5">
-                                    Rp. {{ number_format($valProduct->price, 0, ',', '.') }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
                 </div>
             </div>
 

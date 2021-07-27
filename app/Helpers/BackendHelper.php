@@ -7,6 +7,9 @@ use Image;
 use Storage;
 use Exception;
 
+use App\Mail\PHPMailer;
+use App\Mail\phpmailerException;
+
 use App\Helpers\JWTAuth;
 use App\Models\API\Log\TransLogApi;
 use App\Models\API\Auth\JwtPrivateKeys;
@@ -51,5 +54,58 @@ class BackendHelper
     {
         dd($path);
         unlink(storage_path('app\public\banner\6lCuN19vzJUn2lfz3AvB.jpeg'));
+    }
+
+    public static function sendEmail()
+    {
+        $body = "Dapatkan Judi";
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->CharSet = "utf-8";
+        $mail->Host = 'smtp.hostinger.co.id';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'no-reply@tokodean.com';
+        $mail->Password = 'TokoDean@2021';
+        $mail->Port = 587;
+        $mail->setFrom('no-reply@tokodean.com', 'Toko Dean');
+        $mail->addAddress("agussuandi48@gmail.com", "agussuandi48@gmail.com");
+        $mail->isHTML(true);
+
+        $mail->Subject = "Dapatkan Judi!";
+        $mail->Body = $body;
+
+        if(!$mail->send()) {
+            // dd('tidak terkirim');
+            die();
+        }
+        else {
+            dd('terkirim');
+        }
+    
+        // if(!$mail->send())
+        // {
+        //     $logEmail               = new TransLogEmail;
+        //     $logEmail->no_ticket    = $dataArray['noTicket'];
+        //     $logEmail->nama         = $sendKontak;
+        //     $logEmail->email        = $sendMail;
+        //     $logEmail->status       = 'Tidak Terkirim';
+        //     $logEmail->created_at   = date('Y-m-d H:i:s');
+        //     $logEmail->save();
+
+        //     return "GAGAL";
+        // }
+        // else
+        // {
+        //     $logEmail               = new TransLogEmail;
+        //     $logEmail->no_ticket    = $dataArray['noTicket'];
+        //     $logEmail->nama         = $sendKontak;
+        //     $logEmail->email        = $sendMail;
+        //     $logEmail->status       = 'Terkirim';
+        //     $logEmail->created_at   = date('Y-m-d H:i:s');
+        //     $logEmail->save();
+
+        //     return "BERHASIL";
+        // }
     }
 }

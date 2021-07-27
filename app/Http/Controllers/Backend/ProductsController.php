@@ -87,6 +87,7 @@ class ProductsController extends Controller
         catch (Exception $e)
         {
             DB::rollBack();
+            dd($e->getMessage());
             return redirect('panel/master-data/products')->with('danger','Gagal membuat Product.');
         }
     }

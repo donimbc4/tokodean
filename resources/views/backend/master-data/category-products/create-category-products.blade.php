@@ -22,11 +22,32 @@
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control" name="name" autocomplete="off" required />
                 </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" onchange="renderFile(this)" />
+                    <input type="hidden" id="image" name="image">
+                </div>
+                <div class="mb-3">
+                    <div id="divImage"></div>
+                </div>
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
             </form>
         </div>
     </div>
 @stop
 @section('javascript')
+    <script>
+        renderFile = (obj) => {
+            renderImage(obj.files[0])
+        }
 
+        renderImage = (file) => {
+            var reader = new FileReader()
+            reader.onload = (event) => {
+                document.getElementById('divImage').innerHTML = `<img src="${event.target.result}" class="img-fluid" style="height: 250px;" alt="category products" />`
+                document.getElementById('image').value = event.target.result
+            }
+            reader.readAsDataURL(file)
+        }
+    </script>
 @endsection

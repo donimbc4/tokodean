@@ -20,6 +20,7 @@ class CategoryProductsController extends Controller
 {
     public function index(Request $request)
     {
+        // BackendHelper::sendEmail();
         $categoryProductList = MCategoryProducts::paginate(10);
         return view('backend.master-data.category-products.category-products', [
             'categoryProductList' => $categoryProductList
@@ -32,10 +33,15 @@ class CategoryProductsController extends Controller
         {
             if ($request->isMethod('post'))
             {
+                if ($request->image !== null)
+                {
+                    $pathImage = str_replace('public', 'storage', BackendHelper::validationImageBase64($request->image, 'categoryProduct', 720, 660));
+                }
                 DB::beginTransaction();
                 $mCategoryProducts               = new MCategoryProducts;
                 $mCategoryProducts->name         = $request->name;
                 $mCategoryProducts->slug         = Str::slug($request->name);
+                $mCategoryProducts->image        = isset($pathImage) ? $pathImage : '-';
                 $mCategoryProducts->flag_active  = MCategoryProducts::ACTIVE; #DEFAULT ACTIVE
                 $mCategoryProducts->created_by   = Auth::user()->id;
                 $mCategoryProducts->created_at   = date('Y-m-d H:i:s');
@@ -68,7 +74,7 @@ class CategoryProductsController extends Controller
                 $mCategoryProducts               = MCategoryProducts::find(\Crypt::decryptString($id));
                 $mCategoryProducts->name         = $request->name;
                 $mCategoryProducts->slug         = Str::slug($request->name);
-                $mCategoryProducts->image        = isset($pathImage) ? $pathImage : '-';
+                $mCategoryProducts->image        = isset($pathImage) ? $pathImage : $mCategoryProducts->image;
                 $mCategoryProducts->flag_active  = $request->status;
                 $mCategoryProducts->updated_by   = Auth::user()->id;
                 $mCategoryProducts->updated_at   = date('Y-m-d H:i:s');
