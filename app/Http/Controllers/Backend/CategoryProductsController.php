@@ -20,7 +20,6 @@ class CategoryProductsController extends Controller
 {
     public function index(Request $request)
     {
-        // BackendHelper::sendEmail();
         $categoryProductList = MCategoryProducts::paginate(10);
         return view('backend.master-data.category-products.category-products', [
             'categoryProductList' => $categoryProductList

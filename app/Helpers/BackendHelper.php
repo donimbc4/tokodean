@@ -56,9 +56,29 @@ class BackendHelper
         unlink(storage_path('app\public\banner\6lCuN19vzJUn2lfz3AvB.jpeg'));
     }
 
-    public static function sendEmail()
+    public static function sendEmail($request)
     {
-        $body = "Dapatkan Judi";
+        // $request->session()->put('product', $request->product);
+        // $request->session()->put('qty', $request->qty);
+        // dd($request->session()->get('nama'));
+        // dd($request->all());
+
+        $elementProduct = "";
+        foreach ($request->product as $keyProduct => $valProduct)
+        {
+            $product = \DB::table('m_product')->where('id', $valProduct)->first();
+            $elementProduct .= "
+                <tr>
+                    <td>{$product->name}</td>
+                    <td>{$request->qty[$keyProduct]}</td>
+                    <td>{$product->price}</td>
+                </tr>
+            ";
+        }
+
+        $body           = file_get_contents(resource_path('views\frontend\email\checkout.blade.php'));
+        $bodyContent    = str_replace("#PRODUCTLIST#", $elementProduct, $body);
+        // $body = str_replace("(BODYTEXT)", $bodyText, $body);
 
         $mail = new PHPMailer;
         $mail->isSMTP();
@@ -73,7 +93,7 @@ class BackendHelper
         $mail->isHTML(true);
 
         $mail->Subject = "Dapatkan Judi!";
-        $mail->Body = $body;
+        $mail->Body = $bodyContent;
 
         if(!$mail->send()) {
             // dd('tidak terkirim');
