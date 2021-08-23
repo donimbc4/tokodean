@@ -19,6 +19,8 @@ Route::prefix('/shop')->group(function()
 });
 Route::match(['get', 'post'], '/login', 'Auth\AuthController@login')->name('login');
 Route::match(['get', 'post'], '/cart', 'FrontEnd\CartController@index')->name('cart');
+Route::match(['get', 'post'], '/contact', 'FrontEnd\ContactController@index');
+Route::get('/about', 'FrontEnd\AboutController@index');
 Route::match(['get', 'post'], '/checkout', 'FrontEnd\CheckoutController@index')->name('checkout');
 Route::match(['get', 'post'], '/register', 'Auth\AuthController@register');
 
